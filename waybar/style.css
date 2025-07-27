@@ -1,0 +1,94 @@
+@import "/home/fauzy/.cache/wal/colors-waybar.css";
+
+
+* {
+    border: none;
+    font-family: JetBrainsMono Nerd Font;
+    font-size: 11px;
+    color: @foreground;
+    border-radius: 10px;
+}
+
+window {
+	/*font-weight: bold;*/
+}
+window#waybar {
+    background: rgba(0, 0, 0, 0);
+}
+/*-----module groups----*/
+.modules-right {
+	background-color: @background;
+    margin: 2px 10px 0 0;
+}
+/* .modules-center { */
+/* 	background-color: @background; */
+/*     margin: 2px 0 0 0; */
+/*     padding-left: 2px; */
+/*     padding-right: 5px; */
+/* } */
+.modules-left {
+    margin: 2px 0 0 5px;
+	background-color: @background;
+}
+/*-----modules indv----*/
+#workspaces button {
+    padding: 1px 3px;
+    background-color: transparent;
+}
+#workspaces button:hover {
+  box-shadow: inherit;
+	background-color: @color10;
+}
+
+#workspaces button.focused {
+  background-color: @color10;
+  border-radius: 7px;
+  padding-bottom: 0px;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#custom-power,
+#custom-menu,
+#idle_inhibitor,
+#custom-cava {
+    padding: 0 10px;
+}
+#mode {
+    color: @color1;
+    font-weight: bold;
+}
+#custom-power {
+    background-color: @color10;
+    border-radius: 10px;
+    margin: 5px 5px;
+    padding: 1px 1px 1px 6px;
+}
+/*-----Indicators----*/
+#idle_inhibitor.activated {
+    color: @color2;         
+}
+#pulseaudio.muted {
+    color: @color1;         
+}
+#battery.charging {
+    color: @color2;         
+}
+#battery.warning:not(.charging) {
+	color: @color3;         
+}
+#battery.critical:not(.charging) {
+    color: @color1;         
+}
+#temperature.critical {
+    color: @color1;         
+}
+

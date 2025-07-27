@@ -1,0 +1,144 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 24, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 0, // Gaps between modules (4px)
+
+    // Choose the order of the modules
+    "modules-left": [
+        "sway/workspaces"
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "network",
+        "power-profiles-daemon",
+        "battery",
+        "clock",
+        "custom/power"
+    ],
+
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 5,
+        // "icons": {
+        //   "blueman": "bluetooth",
+        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        // }
+    },
+
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": " {:%H:%M}",
+        "format-alt": " {:%a, %d %b %Y}"
+    },
+
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "  {capacity}%",
+        "format-full": "  {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{capacity}%  {time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "  {essid}",
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "tooltip-format": "({signalStrength}%) {ifname} via {gwaddr}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": " Disconnected",
+        "on-click": "nm-connection-editor"
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon} {volume}%   {format_source}",
+        "format-bluetooth": " {icon} {volume}%   {format_source}",
+        "format-bluetooth-muted": "  {icon}   {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "pulseaudio#source": {
+        "format": " {source_volume}%",
+        "format-source-muted": "",
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
+        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%"
+    },
+
+    "custom/power": {
+        "format": "⏻ ",
+        "tooltip": false,
+        "on-click": "~/.config/waybar/scripts/swaylock.sh"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰈈",
+            "deactivated": "󰈉"
+        },
+    },
+    "custom/cava": {
+      "format": "{text}",
+      "exec": "/home/fauzy/.config/waybar/cava_module.py",
+      "return-type": "json",
+      "interval": 0,
+      "restart-interval": 0
+    },
+    "custom/music": {
+    "format": "{icon}{}",
+    "format-icons": {
+        // "Playing": " ", // Uncomment if not using caway
+        "Paused": " ",
+        "Stopped": "&#x202d;ﭥ " // This stop symbol is RTL. So &#x202d; is left-to-right override.
+    },
+    "escape": true,
+    "tooltip": true,
+    "exec": "~/.scripts/caway",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl previous",
+    "on-scroll-down": "playerctl next",
+    "on-click-right": "g4music",
+    "max-length": 35
+    }
+}
+
